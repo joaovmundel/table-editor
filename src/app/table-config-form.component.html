@@ -1,0 +1,53 @@
+<form [formGroup]="form" class="table-form">
+  <mat-form-field appearance="fill">
+    <input
+      type="text"
+      matInput
+      placeholder="Database"
+      formControlName="database"
+      [matAutocomplete]="dbAuto"
+    />
+    <mat-autocomplete #dbAuto="matAutocomplete">
+      <mat-option *ngFor="let db of databases" [value]="db">{{ db }}</mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <input
+      type="text"
+      matInput
+      placeholder="Tabela"
+      formControlName="table"
+      [matAutocomplete]="tableAuto"
+    />
+    <mat-autocomplete #tableAuto="matAutocomplete">
+      <mat-option *ngFor="let table of tables" [value]="table">{{ table }}</mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Colunas Editáveis" formControlName="editableColumns" multiple>
+      <mat-option *ngFor="let c of columns" [value]="c">{{ c }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Colunas de Visualização" formControlName="viewColumns" multiple>
+      <mat-option *ngFor="let c of columns" [value]="c">{{ c }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Tipo de Dado" formControlName="dataType">
+      <mat-option value="string">string</mat-option>
+      <mat-option value="number">number</mat-option>
+      <mat-option value="date">date</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Grupos" formControlName="roles" multiple>
+      <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
