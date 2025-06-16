@@ -15,13 +15,13 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome goal-editor-new'
+      'Welcome goal-editor'
     );
   });
 
-  it(`should have as title 'goal-editor-new'`, () => {
+  it(`should have as title 'goal-editor'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('goal-editor-new');
+    expect(app.title).toEqual('goal-editor');
   });
 });

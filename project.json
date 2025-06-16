@@ -1,5 +1,5 @@
 {
-  "name": "goal-editor-new",
+  "name": "goal-editor",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "includedScripts": [],
   "projectType": "application",
@@ -9,16 +9,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/goal-editor-new",
+        "outputPath": "dist/goal-editor",
         "index": "./src/index.html",
         "main": "./src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -64,10 +60,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "goal-editor-new:build:production"
+          "buildTarget": "goal-editor:build:production"
         },
         "development": {
-          "buildTarget": "goal-editor-new:build:development"
+          "buildTarget": "goal-editor:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -75,24 +71,20 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "goal-editor-new:build"
+        "buildTarget": "goal-editor:build"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "./src"
-        ]
+        "lintFilePatterns": ["./src"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectName}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
       "options": {
-        "jestConfig": "jest.config.ts"
+        "jestConfig": "jest.config.app.ts"
       }
     }
   }
