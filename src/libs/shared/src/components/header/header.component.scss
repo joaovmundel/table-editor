@@ -1,0 +1,26 @@
+.header-toolbar {
+  display: flex;
+  align-items: center;
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  text-transform: none;
+  color: white;
+}
+
+.avatar-icon {
+  border-radius: 50%;
+  background-color: #ffffff33;
+  margin-right: 8px;
+}

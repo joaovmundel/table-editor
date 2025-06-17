@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { AuthenticatedGuard } from '@goal-editor/shared';
+import { AuthenticatedGuard, SidebarLayoutComponent } from '@goal-editor/shared';
 
 export const appRoutes: Route[] = [
     {
@@ -8,13 +8,19 @@ export const appRoutes: Route[] = [
         pathMatch: 'full'
     },
     {
-        path: 'home',
-        loadComponent: () => import('@goal-editor/home').then(m => m.HomeComponent),
-        canActivate: [AuthenticatedGuard]
-    },
-    {
         path: 'login',
         loadComponent: () => import('@goal-editor/auth').then(m => m.LoginComponent)
+    },
+    {
+        path: '',
+        component: SidebarLayoutComponent,
+        canActivate: [AuthenticatedGuard],
+        children: [
+            {
+                path: 'home',
+                loadComponent: () => import('@goal-editor/home').then(m => m.HomeComponent)
+            }
+        ]
     },
     {
         path: '**',

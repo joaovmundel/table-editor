@@ -1,0 +1,35 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened class="sidenav" id="sidenav">
+        <mat-nav-list>
+
+            <!-- Menu Principal -->
+            @for(item of menuItems; track item.name) {
+            <a mat-list-item [routerLink]="item.link" class="sidenav__item">{{ item.name }}</a>
+            }
+
+            <mat-divider></mat-divider>
+
+            <!-- Menu de Databases/Tabelas -->
+            @for(db of databases; track db.database) {
+            <mat-expansion-panel class="sidenav__category" [expanded]="isExpanded(db.database)" (opened)="toggleDatabase(db.database)"
+                (closed)="toggleDatabase(db.database)">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{ db.database }}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                @for(table of db.tables; track table.name) {
+                <a mat-list-item [routerLink]="['/edit', db.database, table.name]" class="sidenav__item">
+                    {{ table.name }}
+                </a>
+                }
+            </mat-expansion-panel>
+            }
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
