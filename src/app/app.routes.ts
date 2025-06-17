@@ -15,5 +15,9 @@ export const appRoutes: Route[] = [
     {
         path: 'login',
         loadComponent: () => import('@goal-editor/auth').then(m => m.LoginComponent)
+    },
+    {
+        path: '**',
+        redirectTo: 'home'
     }
 ];
