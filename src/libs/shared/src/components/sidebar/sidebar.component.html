@@ -3,23 +3,39 @@
         <mat-nav-list>
 
             <!-- Menu Principal -->
-            @for(item of menuItems; track item.name) {
+            @for (item of menuItems; track item.name) {
             <a mat-list-item [routerLink]="item.link" class="sidenav__item">{{ item.name }}</a>
             }
 
             <mat-divider></mat-divider>
 
-            <!-- Menu de Databases/Tabelas -->
-            @for(db of databases; track db.database) {
-            <mat-expansion-panel class="sidenav__category" [expanded]="isExpanded(db.database)" (opened)="toggleDatabase(db.database)"
-                (closed)="toggleDatabase(db.database)">
+            <!-- Busca por Database -->
+            <mat-form-field appearance="outline" class="sidenav__search">
+                <mat-label>Buscar database</mat-label>
+                <input matInput [formControl]="searchControl" placeholder="Digite o nome da database" />
+                <mat-icon>search</mat-icon>
+            </mat-form-field>
+
+            <!-- Databases -->
+            @for (db of filteredDatabases; track db.database) {
+            <mat-expansion-panel class="sidenav__category" [expanded]="isExpanded(db.database)"
+                (opened)="toggleDatabase(db.database)" (closed)="toggleDatabase(db.database)">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         {{ db.database }}
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 
-                @for(table of db.tables; track table.name) {
+                <!-- Busca por Tabela dentro da database -->
+                <mat-form-field appearance="outline" class="sidenav__search">
+                    <mat-label>Buscar tabela</mat-label>
+                    <input matInput [formControl]="getTableSearchControl(db.database)"
+                        placeholder="Digite o nome da tabela" />
+                    <mat-icon>search</mat-icon>
+                </mat-form-field>
+
+                <!-- Tabelas filtradas -->
+                @for (table of getFilteredTables(db); track table.name) {
                 <a mat-list-item [routerLink]="['/edit', db.database, table.name]" class="sidenav__item">
                     {{ table.name }}
                 </a>

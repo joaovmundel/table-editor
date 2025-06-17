@@ -15,4 +15,17 @@
     border-radius: 0 !important;
     padding-left: 24px !important;
   }
+
+  &__search {
+    .mat-mdc-form-field-infix {
+      display: flex !important;
+    }
+    padding: 8px 16px;
+    width: calc(100% - 32px);
+  }
+
+  &__table-search {
+    margin: 8px 16px;
+    width: calc(100% - 32px);
+  }
 }
