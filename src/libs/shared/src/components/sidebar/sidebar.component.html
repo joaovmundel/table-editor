@@ -4,7 +4,7 @@
 
             <!-- Menu Principal -->
             @for (item of menuItems; track item.name) {
-            <a mat-list-item [routerLink]="item.link" class="sidenav__item">{{ item.name }}</a>
+            <a mat-list-item (click)="navigate(item.link)" class="sidenav__item">{{ item.name }}</a>
             }
 
             <mat-divider></mat-divider>
@@ -36,7 +36,7 @@
 
                 <!-- Tabelas filtradas -->
                 @for (table of getFilteredTables(db); track table.name) {
-                <a mat-list-item [routerLink]="['/edit', db.database, table.name]" class="sidenav__item">
+                <a mat-list-item (click)="navigate('/edit/${db.database}/${table.name}')" class="sidenav__item">
                     {{ table.name }}
                 </a>
                 }
@@ -45,7 +45,4 @@
         </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
 </mat-sidenav-container>

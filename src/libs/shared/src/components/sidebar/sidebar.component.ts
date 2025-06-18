@@ -7,7 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { debounceTime, startWith } from 'rxjs/operators';
 import { DatabaseItem, MenuItem } from '../../models/menu.interface';
@@ -32,6 +32,7 @@ import { MenuService } from '../../services/menu.service';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
     private menuService = inject(MenuService);
+    private router = inject(Router);
     private readonly _destroy$ = new Subject<void>();
 
     menuItems: MenuItem[] = [];
@@ -82,6 +83,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     isExpanded(database: string): boolean {
         return this.expandedDatabases.has(database);
+    }
+
+    navigate(path: string): void {
+        this.router.navigate([path]);
     }
 
     getFilteredTables(db: DatabaseItem): { name: string }[] {
